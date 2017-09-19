@@ -1,0 +1,26 @@
+fonction init_cartes
+fonction de verifications 
+Deroulement du jeu : 
+	1-Verification d'un coup 
+	2-Gagnant pli + affectation score
+	3-Beta de l'interface graphique 
+	4-determination cartes jouables 
+
+
+
+
+
+	Initialisation : 
+		
+		1-"Fabrication" du jeu de carte
+		2-Melange des cartes
+		3-Distribution des cartes 
+
+	Etapes du jeu : 
+		1-J1  joue 
+		(2-Determination des cartes jouable pour j2)
+		3-j2 joue une carte
+		4-verif carte de j2
+		5-determination gagnant pli
+		6-incrementation score 
+		
