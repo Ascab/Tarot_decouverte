@@ -1,7 +1,7 @@
 #include "../headers/include.h"
 
 void melange_carte ( CARTE TabC[78] )
-{
+
 	int i;
 	CARTE stock;
 	
