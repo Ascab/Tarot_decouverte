@@ -1,15 +1,22 @@
-int verif_coup (CARTE J1, CARTE J2, CARTE* mainJ2)
+/*========= Validation du coups : 0 valide 1 sinon========*/
+
+int verif_coup (CARTE J1, CARTE J2, CARTE mainJ2[3][12])
 {
-	
+	if (J1.typeC == COULEUR)	
+		entame_couleur(J1, J2, mainJ2);
+	else
+		entame_atout(J1, J2, mainJ2);
 }
-int entame_couleur (CARTE J1, CARTE J2)
+int entame_couleur (CARTE J1, CARTE J2, CARTE mainJ2[3][12])
 {	
 	switch J2.typeC
 	{
 		case  CLASSIC: 
-			return verif_couleur(J1.carteC.couleur, J2.carteC.couleur) + verif_couleur_main (mainJ2, J1.carteC.couleur)*;  
-			/*verif couleur renvoi 0 si meme couleur 1 sinon
-			verif_couleur_main renvoie 0 si il a meme couleur en main */
+			if (J1.carteC.couleur == J2.carteC.couleur)
+				return 0
+			else
+			return  verif_couleur_main (mainJ2, J1.carteC.couleur)*verif_atout_main(excuse, mainJ2);  
+			
 			break;
 		case ATOUT: 
 			return verif_couleur_main(mainJ2, J1.carteC.couleur);
@@ -22,22 +29,43 @@ int entame_atout (CARTE J1, CARTE J2, CARTE* mainJ2)
 	switch J2.typeC
 	{
 		case ATOUT:
-			return verif_monte_atout(J1.carteA.valA, J2.carteA.valA) * verif_atout_main(J1.carteA.valA, mainJ2);
+			if (J2.carteA,valA > J1.carteA.valA)
+				return 0
+			else
+			return  verif_atout_main(J1.carteA.valA, mainJ2);
 			break;
-			/*monte atout retourne 0 si J2 monte 1 sinon 
-			  atout main retourne  0 si J2 ne possede pas atout superieur 1 sinon */
 		case CLASSIC:
 			return verif_atout_main(excuse , mainJ2);
 			break;
 	}
 }
-int verif_couleur(COULEURC couleur1, COULEURC couleur2)
-{	
-	if ((int)couleur1 =(int) couleur2)
-		return 0;
-	else 
-		return 1;
-}
-int verif_couleur_main(CARTE mainJ1[3][12], COULEURC couleur)
+int verif_couleur_main(CARTE mainJ2[3][12], COULEURC couleurJ1)
 {
-	 
+	int i, j, nb_valide;
+	
+        for (i = 1 ; i >= 0 ; i--)
+	 {
+		 for ( j = 0 ; j < 12 ; j++)
+		 {
+			if ((mainJ2[i][j].typeC == CLASSIC) && (mainJ2[i][j].carteC.couleur == couleurJ1) )
+				nb_valide++;
+		 }
+	 }
+	 return nb_valide ;
+}
+int verif_atout_main(VALA ValA, CARTE mainJ2[3][12])
+{
+	int i, j, nb_valide; 
+
+	for (i =1 ; i >= 0 ; i--)
+	{
+		for (j = 0 ; j < 12 ; j++)
+			{
+				if ((mainJ2[i][j].typeC == ATOUT) && (mainJ2[i][j].carteA.valA >= ValA))
+					nb_valide++;
+			}
+	}
+	return nb_valide
+}
+
+/*=========== Determination du gagnant d'un pli ============*/
