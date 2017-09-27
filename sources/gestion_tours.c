@@ -79,25 +79,40 @@ int gagnant_pli(CARTE J1, CARTE J2, int entameJ)
 			{
 				case CLASSIC : 
 					if ((J1.carteC.valC > J2.carteC.valC) || (J1.carteC.couleur != J2.carteC.couleur))
+					{	
+						printf("J1 gagne\n");
 						return entameJ; //Pas de changement de "premier joueur"
-					else 
+					}
+					else
+					{
+						printf("J2 gagne\n"); 
 						return (entameJ++)%2;
+					}
 					break;
 				case ATOUT : 
+					printf("J2 gagne\n");
 					return (entameJ++)%2;
 			}
 		case ATOUT : 
 			switch J2.typeC
 			{
 				case CLASSIC : 
+					printf("J1 gagne\n");
 					return entameJ;
 					break;
 				case ATOUT 
 					if (J1.carteA.valA > J2.carteA.valA)
+					{
+						printf("J1 gagne\n");
 						return entameJ;
+					}
 					else 
+					{
+						printf("J2 gagne\n");
 						return (entameJ++)%2
+					}
 					break;
 			}
 	}
 }
+
