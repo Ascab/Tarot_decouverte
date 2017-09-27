@@ -69,3 +69,35 @@ int verif_atout_main(VALA ValA, CARTE mainJ2[3][12])
 }
 
 /*=========== Determination du gagnant d'un pli ============*/
+
+int gagnant_pli(CARTE J1, CARTE J2, int entameJ)
+{
+	switch J1.typeC
+	{
+		case CLASSIC :
+			switch J2.typeC
+			{
+				case CLASSIC : 
+					if ((J1.carteC.valC > J2.carteC.valC) || (J1.carteC.couleur != J2.carteC.couleur))
+						return entameJ; //Pas de changement de "premier joueur"
+					else 
+						return (entameJ++)%2;
+					break;
+				case ATOUT : 
+					return (entameJ++)%2;
+			}
+		case ATOUT : 
+			switch J2.typeC
+			{
+				case CLASSIC : 
+					return entameJ;
+					break;
+				case ATOUT 
+					if (J1.carteA.valA > J2.carteA.valA)
+						return entameJ;
+					else 
+						return (entameJ++)%2
+					break;
+			}
+	}
+}
